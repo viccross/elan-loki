@@ -217,7 +217,7 @@ func NewClient(
 	}, nil
 }
 
-func JoinFunc[S ~[]E, E any](elems S, sep string, f func(E) string) string {
+func JoinFunc[S ~[]E, E any](elems S, sep string, f func(e E) string) string {
 	res := make([]string, len(elems))
 	for i := range elems {
 		res[i] = f(elems[i])
@@ -245,6 +245,18 @@ func (c *GatewayClient) FilterChunks(ctx context.Context, tenant string, from, t
 	}
 
 	servers, err := replicationSetsWithBounds(subRing, rs.Instances)
+
+	level.Info(c.logger).Log(
+		"msg", "found replicationsets with bounds",
+		"rf", subRing.ReplicationFactor(),
+		"instances", JoinFunc(rs.Instances, ",", func(e ring.InstanceDesc) string { return e.Id }),
+		"servers", JoinFunc(servers, ",", func(e rsWithRanges) string {
+			addrs := strings.Join(e.rs.GetAddresses(), ",")
+			ranges := JoinFunc(e.ranges, ",", func(e v1.FingerprintBounds) string { return e.String() })
+			return fmt.Sprintf("%s -> %s", addrs, ranges)
+		}),
+	)
+
 	if err != nil {
 		return nil, errors.Wrap(err, "bloom gateway get replication sets")
 	}
@@ -259,6 +271,7 @@ func (c *GatewayClient) FilterChunks(ctx context.Context, tenant string, from, t
 		level.Info(c.logger).Log(
 			"msg", "do FilterChunkRefs for addresses",
 			"i_of_n", fmt.Sprintf("%d_of_%d", i+1, len(servers)),
+			"bounds", JoinFunc(rs.ranges, ",", func(e v1.FingerprintBounds) string { return e.String() }),
 			"addrs", strings.Join(addrs, ","),
 			"from", from.Time(),
 			"through", through.Time(),
