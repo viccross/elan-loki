@@ -1,0 +1,10 @@
+[Unit]
+Requires=network-online.target grafana-server.service mosquitto.service
+After=network-online.target named-chroot.service grafana-server.service mosquitto.service
+[Service]
+Type=exec
+ExecStart=/usr/local/bin/promtail-mqtt
+RemainAfterExit=false
+StandardOutput=journal
+[Install]
+WantedBy=default.target
