@@ -22,6 +22,7 @@ make all
 
 %install
 mkdir -p usr/local/bin
+mkdir -p usr/local/systemd/system
 mkdir -p etc/loki
 cp cmd/loki/loki usr/local/bin/
 cp cmd/loki-canary/loki-canary usr/local/bin/
@@ -29,13 +30,15 @@ cp clients/cmd/promtail/promtail usr/local/bin/
 cp cmd/logcli/logcli usr/local/bin/
 cp etc/loki/mqtt-promtail.yaml etc/loki/
 cp etc/loki/loki.yaml etc/loki/
+cp systemd/loki.service usr/local/systemd/system/loki.service
+cp systemd/promtail-mqtt.service usr/local/systemd/system/promtail-mqtt.service
 
 %files
-/etc/loki/mqtt-promtail.yaml
+/etc/loki/promtail-mqtt.yaml
 /etc/loki/loki.yaml
 /usr/local/bin/loki
 /usr/local/bin/promtail
-/usr/local/systemd/system/mqtt-promtail.service
+/usr/local/systemd/system/promtail-mqtt.service
 /usr/local/systemd/system/loki.service
 
 %post
