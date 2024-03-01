@@ -3,7 +3,7 @@ Requires=network-online.target grafana-server.service
 After=network-online.target named-chroot.service grafana-server.service
 [Service]
 Type=exec
-ExecStart=/usr/local/bin/loki
+ExecStart=/usr/local/bin/loki -config.file=/etc/loki/loki.yaml -log.level=warn
 RemainAfterExit=false
 StandardOutput=journal
 [Install]
