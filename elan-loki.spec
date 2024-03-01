@@ -28,8 +28,8 @@ cp cmd/loki/loki usr/local/bin/
 cp cmd/loki-canary/loki-canary usr/local/bin/
 cp clients/cmd/promtail/promtail usr/local/bin/
 cp cmd/logcli/logcli usr/local/bin/
-cp etc/loki/mqtt-promtail.yaml etc/loki/
-cp etc/loki/loki.yaml etc/loki/
+cp etc/promtail-mqtt.yaml etc/loki/
+cp etc/loki.yaml etc/loki/
 cp systemd/loki.service usr/local/systemd/system/loki.service
 cp systemd/promtail-mqtt.service usr/local/systemd/system/promtail-mqtt.service
 
