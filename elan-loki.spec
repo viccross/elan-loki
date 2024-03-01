@@ -18,18 +18,18 @@ with Mosquitto.
 make all
 
 %install
-mkdir -p %{buildroot}/usr/local/bin
-mkdir -p %{buildroot}/usr/local/systemd/system
-mkdir -p %{buildroot}/etc/loki
-install -m 755 cmd/loki/loki %{buildroot}/usr/local/bin/
-install -m 755 cmd/loki-canary/loki-canary %{buildroot}/usr/local/bin/
-install -m 755 clients/cmd/promtail/promtail %{buildroot}/usr/local/bin/
-install -m 755 cmd/logcli/logcli %{buildroot}/usr/local/bin/
-install -m 755 systemd/promtail-mqtt %{buildroot}/usr/local/bin/
-install -m 644 etc/promtail-mqtt.yaml %{buildroot}/etc/loki/
-install -m 644 etc/loki.yaml %{buildroot}/etc/loki/
-install -m 644 systemd/loki.service %{buildroot}/usr/local/systemd/system/
-install -m 644 systemd/promtail-mqtt.service %{buildroot}/usr/local/systemd/system/
+mkdir -p "%{buildroot}/usr/local/bin"
+mkdir -p "%{buildroot}/usr/local/systemd/system"
+mkdir -p "%{buildroot}/etc/loki"
+install -m 755 cmd/loki/loki "%{buildroot}/usr/local/bin/"
+install -m 755 cmd/loki-canary/loki-canary "%{buildroot}/usr/local/bin/"
+install -m 755 clients/cmd/promtail/promtail "%{buildroot}/usr/local/bin/"
+install -m 755 cmd/logcli/logcli "%{buildroot}/usr/local/bin/"
+install -m 755 systemd/promtail-mqtt "%{buildroot}/usr/local/bin/"
+install -m 644 etc/promtail-mqtt.yaml "%{buildroot}/etc/loki/"
+install -m 644 etc/loki.yaml "%{buildroot}/etc/loki/"
+install -m 644 systemd/loki.service "%{buildroot}/usr/local/systemd/system/"
+install -m 644 systemd/promtail-mqtt.service "%{buildroot}/usr/local/systemd/system/"
 
 %files
 /etc/loki/promtail-mqtt.yaml
