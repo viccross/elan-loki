@@ -1,0 +1,2 @@
+#!/bin/sh
+mosquitto_sub -h localhost -p 1883 -u ${MQTTID} -P ${MQTTPWD} -F %j -t '#' | /usr/local/bin/promtail --stdin --config.file=/etc/loki/promtail-mqtt.yaml
