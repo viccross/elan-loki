@@ -47,5 +47,5 @@ systemctl enable loki.service
 systemctl enable mqtt-promtail.service
 
 %changelog
-Fri Mar  1 2024 Vic Cross <viccross@au.ibm.com> - 0.0.1-1
-- Initial
+* Fri Mar  1 2024 Vic Cross <viccross@au.ibm.com> - 0.0.1-1
+  - Initial
