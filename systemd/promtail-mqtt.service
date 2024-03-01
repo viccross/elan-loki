@@ -3,6 +3,7 @@ Requires=network-online.target grafana-server.service mosquitto.service loki.ser
 After=network-online.target named-chroot.service grafana-server.service mosquitto.service loki.service
 [Service]
 Type=exec
+EnvironmentFile=/etc/zvmesi/promtail-mqtt.env
 ExecStart=/usr/local/bin/promtail-mqtt
 RemainAfterExit=false
 StandardOutput=journal
