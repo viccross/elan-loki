@@ -4,7 +4,6 @@ Version:    %{_version}
 Release:    1%{?dist}
 Summary:    Loki and Promtail for the ELAN
 License:    AGPL-3.0-only
-BuildArch:  s390x
 BuildRequires: golang
 BuildRequires: make
 BuildRequires: systemd-devel
